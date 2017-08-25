@@ -19,12 +19,29 @@ public class MainActivity extends AppCompatActivity {
      */
     public static boolean ValidateMethod(String password) {
         // Rule-1
-        if (password.equalsIgnoreCase("password"))
+        if (password.equalsIgnoreCase("password")) {
             return false;
+        }
 
         // Rule-2
-        if (password.length() < 8)
+        if (password.length() < 8) {
             return false;
+        }
+
+        // Rule-3 : it contains a digit
+        if (!(password.matches(".*\\d+.*"))) {
+            return false;
+        }
+
+        // Rule-4 - it contains upper and lower case
+        if (password.equals(password.toLowerCase()) || password.equals(password.toUpperCase())) {
+            return false;
+        }
+
+        // Rule-5 - it contains a special character # or $ or *
+        if (!(password.indexOf('#') != -1 || password.indexOf('$') != -1 || password.indexOf('*') != -1)) {
+            return false;
+        }
 
         return true;
     }
