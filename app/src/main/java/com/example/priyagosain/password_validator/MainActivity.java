@@ -2,15 +2,34 @@ package com.example.priyagosain.password_validator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    private EditText passwordText;
+    private TextView feedbackText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+        feedbackText = (TextView)findViewById(R.id.feedbackText);
+        passwordText = (EditText) findViewById(R.id.passwordText);
+
+    }
+    public void checkIfValid(View v) {
+        /** Validate the input field "passwordText" and set the "feedbackText" to display on the screen if the requirements
+         *  of a strong password are met or not
+         */
+        if (ValidateMethod(passwordText.getText().toString())) {
+            feedbackText.setText("Valid Password : password is strong enough");
+        } else {
+            feedbackText.setText("Invalid Password : password is not strong enough");
+        }
+    }
     /**
      * MainActivity class has a Validate method that checks whether a string is sufficiently strong password according to 2 rules
      * @param password
